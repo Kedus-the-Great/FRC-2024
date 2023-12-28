@@ -14,7 +14,6 @@ import frc.robot.RobotMap;
 import frc.robot.lib.auto.actions.Action;
 import frc.robot.lib.auto.actions.EmptyAction;
 import frc.robot.lib.interfaces.Swerve.Swerve;
-import frc.robot.subsystems.drive.autos.TopTwoPieceRed;
 
 /**
  * An abstract class that is the basis of the robot's autonomous routines. This is implemented in auto modes (which are

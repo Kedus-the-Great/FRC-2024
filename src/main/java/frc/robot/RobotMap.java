@@ -8,25 +8,12 @@ import com.ctre.phoenix.sensors.WPI_Pigeon2;
 import edu.wpi.first.networktables.NetworkTableInstance.NetworkMode;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.lib.interfaces.LED;
-import frc.robot.lib.interfaces.Elevator.Elevator;
-import frc.robot.lib.interfaces.Elevator.ElevatorFalcon500;
-import frc.robot.lib.interfaces.Elevator.ElevatorIO;
-import frc.robot.lib.interfaces.Intake.Intake;
-import frc.robot.lib.interfaces.Intake.IntakeFalcon500;
 import frc.robot.lib.interfaces.Swerve.GyroIO;
 import frc.robot.lib.interfaces.Swerve.GyroPigeon2;
 import frc.robot.lib.interfaces.Swerve.Swerve;
 import frc.robot.lib.interfaces.Swerve.SwerveModuleFalcon500;
 import frc.robot.lib.interfaces.Swerve.SwerveModuleIO;
-import frc.robot.lib.interfaces.Wrist.Wrist;
-import frc.robot.lib.interfaces.Wrist.WristFalcon500;
-import frc.robot.subsystems.Elevator.ElevatorStateMachine;
-import frc.robot.subsystems.LED.LEDStateMachine;
-import frc.robot.subsystems.Wrist.WristStateMachine;
-
 import frc.robot.subsystems.drive.DrivetrainStateMachine;
-import frc.robot.subsystems.intake.IntakeStateMachine;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 
 public class RobotMap {
@@ -34,10 +21,6 @@ public class RobotMap {
     /* state machine instances */
     public static DrivetrainStateMachine drivetrainStateMachine;
     
-    public static IntakeStateMachine intakeStateMachine;
-    public static LEDStateMachine ledStateMachine;
-    public static ElevatorStateMachine elevatorStateMachine;
-    public static WristStateMachine wristStateMachine;
 
     /* Motor instances */
     public static WPI_Pigeon2 gyro;
@@ -51,12 +34,10 @@ public class RobotMap {
     public static Field2d Field2d;
 
     /* Interface instances */
-    public static Elevator elevator;
-    public static Wrist wrist;
+   
     public static Swerve swerve; 
     // public static Arm arm;
-    public static LED led;
-    public static Intake intake;
+   
 
     /* Xbox controllers */
     public static XboxController manipulatorController;
@@ -83,24 +64,7 @@ public class RobotMap {
         
         switch(Constants.currentMode){
             case REAL:
-                intake = new Intake(new IntakeFalcon500(Constants.INTAKE.INTAKE_MOTOR));
                 
-                elevator = new Elevator(
-                    new ElevatorFalcon500(Constants.Elevator.elevatorFirstStageMotorID),
-                    new ElevatorFalcon500(Constants.Elevator.elevatorSecondStageMotorID)
-                );
-
-                wrist = new Wrist(
-                    new WristFalcon500(Constants.Wrist.wristMotorID)
-                );
-
-                break;
-            case REPLAY:
-                elevator = new Elevator(
-                    new ElevatorIO(){}, 
-                    new ElevatorIO(){});
-                    
-               
                     break;
             default:
                 break;
@@ -120,20 +84,13 @@ public class RobotMap {
         
         swerve.resetModulesToAbsolute();
         swerve.zeroGyro();
-        elevator.resetEncoder();
-        wrist.resetEncoder();
-        elevator.setNeutralMode(NeutralMode.Brake);
+        
         
         // arm = new Arm();
         Field2d = new Field2d();
-        led = new LED();
-
-        ledStateMachine = new LEDStateMachine();
+        
         drivetrainStateMachine = new DrivetrainStateMachine();
-        elevatorStateMachine = new ElevatorStateMachine();
-        wristStateMachine = new WristStateMachine();
-        // armStateMachine = new ArmStateMachine();
-        intakeStateMachine = new IntakeStateMachine();
+       
     }
 }
 // initiate bomb sequence

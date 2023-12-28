@@ -8,7 +8,7 @@ import java.util.Optional;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.subsystems.drive.autos.BotSideLoadingStation;
+
 // import frc.robot.subsystems.drive.autos.BotSideLink;
 // import frc.robot.subsystems.drive.autos.BotSideLoadingStation;
 import frc.robot.subsystems.drive.autos.BotSimpleScoreCone;
@@ -18,13 +18,6 @@ import frc.robot.subsystems.drive.autos.DoNothing;
 // import frc.robot.subsystems.drive.autos.TopSideLink;
 // import frc.robot.subsystems.drive.autos.TopSideLoadingStation;
 // import frc.robot.subsystems.drive.autos.TopSimpleScore;
-import frc.robot.subsystems.drive.autos.MidScoreBalance;
-import frc.robot.subsystems.drive.autos.TestDrivePath;
-import frc.robot.subsystems.drive.autos.TopSideLoadingStation;
-import frc.robot.subsystems.drive.autos.TopSimpleScore;
-import frc.robot.subsystems.drive.autos.TopTwoPieceBlue;
-import frc.robot.subsystems.drive.autos.TopTwoPieceRed;
-import frc.robot.subsystems.drive.autos.TwoPieceEngage;
 
 public class AutoModeSelector {
     enum DesiredMode {
@@ -83,40 +76,12 @@ public class AutoModeSelector {
         case DO_NOTHING:
             return Optional.of(new DoNothing());
 
-        case TEST_PATH:
-            return Optional.of(new TestDrivePath());
-
+        
         case BOT_SIMPLE_SCORE_CONE:
         //Score and Leave Community
             return Optional.of(new BotSimpleScoreCone());
 
-        case TOP_SIMPLE_SCORE:
-        //Score and Leave Community
-            return Optional.of(new TopSimpleScore());
-
-        case MID_SCORE_BALANCE:
-        //Score and engage Charging Station
-            return Optional.of(new MidScoreBalance());
-
-        case BOT_LOADING_STATION:
-        //Score and Prep for loadingStation
-            return Optional.of(new BotSideLoadingStation());
-
-        case TOP_LOADING_STATION:
-        //Score and Pep for loading Station
-            return Optional.of(new TopSideLoadingStation());
-
-        case TOP_TWO_PIECE_BLUE:
-        //Two Piece on Blue Alliance
-            return Optional.of(new TopTwoPieceBlue());
-
-        case TOP_TWO_PIECE_RED:
-        //Two Piece on Red Alliance
-            return Optional.of(new TopTwoPieceRed());
-
-        case TWO_PIECE_ENGAGE:
-        //Two Piece on Red Alliance
-            return Optional.of(new TwoPieceEngage());
+       
         // case BOT_LINK:
         //     return Optional.of(new BotSideLink());
         

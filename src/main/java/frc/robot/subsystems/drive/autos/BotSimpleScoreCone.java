@@ -19,10 +19,6 @@ import frc.robot.lib.auto.actions.ConditionAction;
 import frc.robot.lib.auto.actions.LambdaAction;
 import frc.robot.lib.auto.actions.TrajectoryAction;
 import frc.robot.lib.auto.actions.WaitAction;
-import frc.robot.subsystems.Elevator.ElevatorStateMachine;
-import frc.robot.subsystems.LED.LEDStateMachine;
-import frc.robot.subsystems.Wrist.WristStateMachine;
-import frc.robot.subsystems.intake.IntakeStateMachine;
 
 /** Simple bot score, 1 cone high */
 public class BotSimpleScoreCone extends AutoModeBase {
@@ -70,34 +66,34 @@ public class BotSimpleScoreCone extends AutoModeBase {
 
         System.out.println("Running bot simple score auto!");
         SmartDashboard.putBoolean("Auto Finished", false);
-        runAction(new LambdaAction(() -> RobotMap.ledStateMachine.setCurrentState(LEDStateMachine.coneLEDState)));
-        // close the claw
-        runAction(new LambdaAction(() -> RobotMap.intakeStateMachine.maintainState(IntakeStateMachine.idleState)));
+        // runAction(new LambdaAction(() -> RobotMap.ledStateMachine.setCurrentState(LEDStateMachine.coneLEDState)));
+        // // close the claw
+        // runAction(new LambdaAction(() -> RobotMap.intakeStateMachine.maintainState(IntakeStateMachine.idleState)));
 
-        // position arm to score high
-        runAction(new LambdaAction(() -> RobotMap.elevatorStateMachine.setCurrentState(ElevatorStateMachine.scoreHighState)));
+        // // position arm to score high
+        // runAction(new LambdaAction(() -> RobotMap.elevatorStateMachine.setCurrentState(ElevatorStateMachine.scoreHighState)));
 
-        runAction(new WaitAction(0.75));
+        // runAction(new WaitAction(0.75));
 
-        runAction(new LambdaAction(() -> RobotMap.wristStateMachine.setCurrentState(WristStateMachine.scoreHighState)));
+        // runAction(new LambdaAction(() -> RobotMap.wristStateMachine.setCurrentState(WristStateMachine.scoreHighState)));
 
-        // wait for arm to arrive in position
-        runAction(new ConditionAction(() -> {
-            return RobotMap.elevator.getArrived(Constants.Elevator.ScoreHighCone);
-        }));
+        // // wait for arm to arrive in position
+        // runAction(new ConditionAction(() -> {
+        //     return RobotMap.elevator.getArrived(Constants.Elevator.ScoreHighCone);
+        // }));
 
-        // then, score the piece
-        runAction(new LambdaAction(() -> RobotMap.intakeStateMachine.maintainState(IntakeStateMachine.outtakingState)));
-        // runAction(new LambdaAction(() -> RobotMap.armStateMachine.setCurrentState(ArmStateMachine.scoringState)));
+        // // then, score the piece
+        // runAction(new LambdaAction(() -> RobotMap.intakeStateMachine.maintainState(IntakeStateMachine.outtakingState)));
+        // // runAction(new LambdaAction(() -> RobotMap.armStateMachine.setCurrentState(ArmStateMachine.scoringState)));
 
 
-         // wait for the piece to be scored
-        runAction(new WaitAction(1));
+        //  // wait for the piece to be scored
+        // runAction(new WaitAction(1));
 
-        runAction(new LambdaAction(() -> RobotMap.intakeStateMachine.maintainState(IntakeStateMachine.idleState)));
-        runAction(new LambdaAction(() -> RobotMap.elevatorStateMachine.setCurrentState(ElevatorStateMachine.idleState)));
+        // runAction(new LambdaAction(() -> RobotMap.intakeStateMachine.maintainState(IntakeStateMachine.idleState)));
+        // runAction(new LambdaAction(() -> RobotMap.elevatorStateMachine.setCurrentState(ElevatorStateMachine.idleState)));
 
-        runAction(new LambdaAction(() -> RobotMap.wristStateMachine.setCurrentState(WristStateMachine.idleState)));
+        // runAction(new LambdaAction(() -> RobotMap.wristStateMachine.setCurrentState(WristStateMachine.idleState)));
     
 
         // drive out of the community

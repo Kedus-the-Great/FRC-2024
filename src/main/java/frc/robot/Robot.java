@@ -20,7 +20,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.lib.auto.AutoModeBase;
 import frc.robot.lib.auto.AutoModeExecutor;
 import frc.robot.lib.auto.AutoModeSelector;
-import frc.robot.lib.interfaces.LED;
+
 import frc.robot.lib.interfaces.Swerve.Swerve;
 // import frc.robot.subsystems.arm.ArmStateMachine;
 import frc.robot.subsystems.drive.DrivetrainStateMachine;
@@ -123,29 +123,16 @@ public class Robot extends LoggedRobot{
   
     /* state machines always execute current state and check for next state */
     RobotMap.drivetrainStateMachine.setNextState();
-    RobotMap.intakeStateMachine.setNextState();
-    RobotMap.elevatorStateMachine.setNextState();
-    RobotMap.wristStateMachine.setNextState();
+    
     // RobotMap.armStateMachine.setNextState();
-    RobotMap.ledStateMachine.setNextState();
     // update swerve pose estimator
     RobotMap.swerve.updatePoses();
     RobotMap.swerve.periodic();
-    RobotMap.elevator.periodic();
-    RobotMap.wrist.periodic();
-    LED.periodic();
+    
+   
 
     
-    SmartDashboard.putString("Current intake state", RobotMap.intakeStateMachine.getCurrentState().toString().replace("frc.robot.subsystems.intake.", ""));
-    SmartDashboard.putString("Current wirst state", RobotMap.wristStateMachine.getCurrentState().toString().replace("frc.robot.subsystems.Wrist.", ""));
-    boolean ledState = true;
-    SmartDashboard.putString("Current elevator state", RobotMap.elevatorStateMachine.getCurrentState().toString().replace("frc.robot.subsystems.Elevator.", ""));
-    if (RobotMap.ledStateMachine.getCurrentState() == RobotMap.ledStateMachine.cubeLEDState) {
-      ledState = false;
-    } else {
-      ledState = true;
-    }
-    SmartDashboard.putBoolean("Current LED state", ledState);
+    
 
 
     // see robot pose on Glass
